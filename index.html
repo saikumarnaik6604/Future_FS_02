@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeadManager CRM</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">Saikumar</div>
+            <nav class="sidebar-nav">
+                <div class="nav-item active" data-target="dashboard">Dashboard</div>
+                <div class="nav-item" data-target="analytics">Analytics</div>
+                <div class="nav-item" data-target="settings">Settings</div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <h1 id="page-title">Lead Management</h1>
+                <button class="btn-primary" id="add-btn" onclick="toggleModal(true)">+ Add Lead</button>
+            </header>
+
+            <section id="dashboard" class="content-section">
+                <div class="stats-grid">
+                    <div class="stat-card"><span>Total</span><h2 id="total-count">0</h2></div>
+                    <div class="stat-card"><span>In Progress</span><h2 id="progress-count" style="color: #f59e0b;">0</h2></div>
+                    <div class="stat-card"><span>Converted</span><h2 id="converted-count" style="color: #10b981;">0</h2></div>
+                </div>
+                <div class="data-card">
+                    <table class="leads-table">
+                        <thead>
+                            <tr><th>Name</th><th>Email</th><th>Status</th><th>Actions</th></tr>
+                        </thead>
+                        <tbody id="leads-body"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="analytics" class="content-section" style="display: none;">
+                <div class="data-card" style="padding: 40px; text-align: center;">
+                    <h3>Conversion Performance</h3>
+                    <h1 id="conv-rate" style="font-size: 4rem; color: var(--primary); margin: 20px 0;">0%</h1>
+                    <p>This shows the percentage of leads that reached 'Converted' status.</p>
+                </div>
+            </section>
+
+            <section id="settings" class="content-section" style="display: none;">
+                <div class="data-card" style="padding: 30px;">
+                    <h3>CRM Settings</h3>
+                    <div style="margin-top: 20px;">
+                        <p><strong>Database:</strong> MongoDB (Connected)</p>
+                        <p><strong>Environment:</strong> Development</p>
+                        <p><strong>User:</strong> Intern</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="leadModal" class="modal-overlay">
+        <div class="modal-box">
+            <h3>Add New Lead</h3>
+            <form id="lead-form">
+                <input type="text" id="clientName" placeholder="Client Name" required>
+                <input type="email" id="clientEmail" placeholder="Email Address" required>
+                <select id="clientStatus">
+                    <option value="New">New</option>
+                    <option value="Contacted">Contacted</option>
+                    <option value="Converted">Converted</option>
+                </select>
+                <div style="display:flex; gap: 10px; margin-top: 20px;">
+                    <button type="button" class="btn-ghost" onclick="toggleModal(false)">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Lead</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
